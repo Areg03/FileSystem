@@ -1,6 +1,6 @@
-import foldimg from './closedFolder.png'
-import openFoldImg from './openFolder.png'
-import fileImg from './file.png'
+import foldimg from '../assets/closedFolder.png'
+import openFoldImg from '../assets/openFolder.png'
+import fileImg from '../assets/file.png'
 
 const Folder = (props) => {
     return(

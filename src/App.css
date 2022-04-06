@@ -87,5 +87,46 @@ ul li {
 .main>.item {
   position: relative;
   left: 70px;
+  width: 80px;
 }
 
+.main {
+  width: 70px;
+}
+
+.inp{
+  position: relative;
+  left: 600px;
+  border-color: black;
+  background-color: blue;
+  justify-items: center;
+  width: 120px;
+  align-items: center;
+  top: 20px;
+  height: 40px;
+
+}
+.inp input{
+ width: 100px;
+ height: 20px;
+ left: 20px;
+ top: 10px;
+ position: relative;
+ left: 10px
+}
+
+.inp button{
+  position: relative;
+  left: 120px;
+  padding: 10px;
+  margin: 10px;
+  bottom: 30px;
+}
+
+.none{
+  color: black;
+}
+
+.isactive{
+  color: red;
+}

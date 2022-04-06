@@ -1,23 +1,30 @@
-import { useState } from "react"
-import Folder from "../assets/folder"
+import { useEffect, useState } from "react"
+import Folder from "./folder"
 
-const  Main = ({folders}) => {
-    console.log(folders)
-    const [isHidden, setIsHidden] = useState(true);
+const Main = ({folders, isActive, setFolder}) => {
+
     const [img, setImg] = useState(true);
-
     const onImgClick = () =>{
-        setIsHidden(!isHidden);
+        setFolder(folders.id)
+        folders.hidden = !folders.hidden
         setImg(!img)
     }
+
+    let onCreateFolder = () => {
+        
+        {folders.isFolder && folders.items.push({ id: 10, name: 'ten', isFolder: true, hidden: true, items: [] })}
+    }
+    console.log(isActive)
     return (
         <div className="main">
-            <div onClick={onImgClick}>
+            <button onClick={onCreateFolder}>ad</button>
+            <div onClick={onImgClick} className={isActive == folders.id? 'isactive' : 'none'}>
                 <Folder name={folders.name} img={img} isFolder={folders.isFolder} />
             </div >
-            <div className="item" hidden={isHidden}>
-        {folders.items.map((folder) =>(           
-            <Main folders={folder}/>      
+            <div className="item" hidden={folders.hidden}>
+        {folders.items.map((folder) =>(  <div key={folder.id}>   
+          {folder.id &&  <Main folders={folder} isActive={isActive} setFolder={setFolder}/> }
+            </div> 
         ))}
             </div>
         </div>
