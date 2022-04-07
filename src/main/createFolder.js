@@ -1,13 +1,26 @@
 import { useState } from "react"
 
 
-const CreateFolder = ({folderPush}) => {
+const CreateFolder = ({folderPushTrue, setNewFolderName}) => {
 
     const [name, setName] = useState('');
+
+    const onCreateFolder = () => {
+        setNewFolderName(name);
+        setName('')
+        folderPushTrue(true)
+    }
+
+    const onCreateFile = () => {
+        setNewFolderName(name);
+        setName('')
+        folderPushTrue(false)
+    }
+
     return  <div className="inp">
      <input type={'text'} value={name} onChange={(e) => setName(e.target.value)} />
-     <button>CreateFolder</button>
-     <button>CreateFile</button>
+     <button onClick={onCreateFolder}>CreateFolder</button>
+     <button onClick={onCreateFile}>CreateFile</button>
      </div>
 }
 

@@ -1,6 +1,10 @@
 const CREATE_FOLDER = 'CREATE_FOLDER';
 const CREATE_FILE = 'CREATE_FILE';
-const SET_FOLDER = 'SET_FOLDER'
+const SET_FOLDER = 'SET_FOLDER';
+const FOLDER_PUSH_FALSE = 'FOLDER_PUSH_FALSE';
+const FOLDER_PUSH_TRUE = 'FOLDER_PUSH_TRUE';
+const SET_ID = 'SET_ID';
+const SET_NEW_FOLDER_NAME = 'SET_NEW_FOLDER_NAME'; 
 let initialState = {
     mainFolder: {
         id: 1, name: 'first', isFolder: true, hidden: true, items: [
@@ -22,10 +26,12 @@ let initialState = {
             { id: 5, name: 'five', isFolder: false, hidden: true, items: [] },
         ]
     },
-    isActive: null,
+    isActive: 1,
     newFolder: { id: 9, name: '', isFolder: false },
     folderPush: false,
-    folderName: '',
+    newFolderName: '',
+    id: 10,
+    isFolder: false,
 }
 
 const filesReducer = (state = initialState, action) => {
@@ -50,6 +56,31 @@ const filesReducer = (state = initialState, action) => {
             
             }
         }
+        case FOLDER_PUSH_FALSE: {
+            return {
+                ...state,
+                folderPush: false,
+            }
+        }
+        case FOLDER_PUSH_TRUE: {
+            return {
+                ...state,
+                folderPush: true,
+                isFolder: action.isFolder
+            }
+        }
+        case SET_ID: {
+            return {
+                ...state,
+                id: state.id + 1,
+            }
+        }
+        case SET_NEW_FOLDER_NAME: {
+            return {
+                ...state,
+                newFolderName: action.newFolderName
+            }
+        }
         default: {
             return state
         }
@@ -58,5 +89,9 @@ const filesReducer = (state = initialState, action) => {
 
 export const createFile = () => ({ type: CREATE_FILE })
 export const setFolder = (isActive) => ({type: SET_FOLDER, isActive})
+export const folderPushFalse = () => ({type: FOLDER_PUSH_FALSE})
+export const folderPushTrue = (isFolder) => ({type: FOLDER_PUSH_TRUE, isFolder})
+export const setId = () => ({type: SET_ID})
+export const setNewFolderName = (newFolderName) => ({type: SET_NEW_FOLDER_NAME, newFolderName})
 
 export default filesReducer;
