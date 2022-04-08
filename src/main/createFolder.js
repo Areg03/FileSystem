@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, memo } from "react"
 
 
 const CreateFolder = ({folderPushTrue, setNewFolderName}) => {
@@ -24,4 +24,4 @@ const CreateFolder = ({folderPushTrue, setNewFolderName}) => {
      </div>
 }
 
-export default CreateFolder;
+export default memo(CreateFolder);
