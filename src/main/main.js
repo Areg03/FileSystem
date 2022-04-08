@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { memo, useEffect, useState } from "react"
 import Folder from "./folder"
 
 const Main = ({ folders, isActive, setFolder, folderPush, folderPushFalse, id, setId, newFolderName, isFolder }) => {
@@ -16,11 +16,13 @@ const Main = ({ folders, isActive, setFolder, folderPush, folderPushFalse, id, s
     }
 
     
-        if (folderPush == true && folders.isFolder && isActive === folders.id) {
+       useEffect(() => {
+           if (folderPush == true && folders.isFolder && isActive === folders.id) {
             folders.items.push({ id, name: newFolderName, isFolder, hidden: true, items: [] })
             setId()
             folderPushFalse();
         }
+       })
     
 
     console.log(id)
@@ -41,4 +43,4 @@ const Main = ({ folders, isActive, setFolder, folderPush, folderPushFalse, id, s
     )
 }
 
-export default Main;
+export default memo(Main);
