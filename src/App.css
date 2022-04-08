@@ -96,7 +96,7 @@ ul li {
 
 .inp{
   position: relative;
-  left: 600px;
+  left: 50%;
   border-color: black;
   background-color: blue;
   justify-items: center;
