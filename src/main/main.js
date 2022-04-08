@@ -25,7 +25,6 @@ const Main = ({ folders, isActive, setFolder, folderPush, folderPushFalse, id, s
        })
     
 
-    console.log(id)
     return (
         <div className="main">
             <div onClick={onImgClick} onDoubleClick={onDoubleImgClick} className={isActive === folders.id ? 'isactive' : 'none'}>
