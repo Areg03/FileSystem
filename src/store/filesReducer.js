@@ -35,7 +35,7 @@ let initialState = {
 }
 
 const filesReducer = (state = initialState, action) => {
-    let a = JSON.stringify(state)
+    
     switch (action.type) {
         case CREATE_FOLDER: {
             return {
