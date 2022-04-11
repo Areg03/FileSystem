@@ -6,6 +6,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
     hiddenActive, setHiddenActive, checkIsItemFolder }) => {
 
 
+
     useEffect(() => {
         if (folderPush === true && folders.isFolder === true && hiddenActive === folders.id) {
             folders.items.push({ id, name: newFolderName, isFolder, hidden: true, items: [] })
