@@ -1,10 +1,13 @@
-const CREATE_FOLDER = 'CREATE_FOLDER';
-const CREATE_FILE = 'CREATE_FILE';
 const SET_FOLDER = 'SET_FOLDER';
 const FOLDER_PUSH_FALSE = 'FOLDER_PUSH_FALSE';
 const FOLDER_PUSH_TRUE = 'FOLDER_PUSH_TRUE';
 const SET_ID = 'SET_ID';
-const SET_NEW_FOLDER_NAME = 'SET_NEW_FOLDER_NAME'; 
+const SET_NEW_FOLDER_NAME = 'SET_NEW_FOLDER_NAME';
+const HIDDEN_ACTIVE = 'HIDDEN_ACTIVE';
+const IS_ITEM_FOLDER = 'IS_ITEM_FOLDER';
+const SET_FOL = 'SET_FOL';
+
+
 let initialState = {
     mainFolder: {
         id: 1, name: 'first', isFolder: true, hidden: true, items: [
@@ -26,34 +29,35 @@ let initialState = {
             { id: 5, name: 'five', isFolder: false, hidden: true, items: [] },
         ]
     },
-    isActive: 1,
-    newFolder: { id: 9, name: '', isFolder: false },
+    isActive: [1],
     folderPush: false,
     newFolderName: '',
-    id: 10,
+    id: 9,
     isFolder: false,
+    lvl: 0,
+    path: ['first'],
+    hiddenActive: 1,
+    isItemFolder: true,
+
 }
 
 const filesReducer = (state = initialState, action) => {
-    let a = JSON.stringify(state)
+
     switch (action.type) {
-        case CREATE_FOLDER: {
-            return {
-                ...state,
-                folder: { id: 9, name: action.name, isFolder: action.isFolder }
-            }
-        }
-        case CREATE_FILE: {
-            return {
-                ...state,
-                folder: { id: 10, name: 'ten', isFolder: false }
-            }
-        }
+
         case SET_FOLDER: {
             return {
                 ...state,
-                isActive: action.isActive,
-            
+                isActive: [...state.isActive, action.isActive],
+                path: [...state.path, action.path],
+
+            }
+        }
+        case SET_FOL: {
+            return {
+                ...state,
+                isActive: state.isActive.slice(0, action.lvl),
+                path: state.path.slice(0, action.lvl)
             }
         }
         case FOLDER_PUSH_FALSE: {
@@ -81,17 +85,31 @@ const filesReducer = (state = initialState, action) => {
                 newFolderName: action.newFolderName
             }
         }
+        case HIDDEN_ACTIVE: {
+            return {
+                ...state,
+                hiddenActive: action.hiddenActive,
+            }
+        }
+        case IS_ITEM_FOLDER: {
+            return {
+                ...state,
+                isItemFolder: action.isItemFolder,
+            }
+        }
         default: {
             return state
         }
     }
 }
 
-export const createFile = () => ({ type: CREATE_FILE })
-export const setFolder = (isActive) => ({type: SET_FOLDER, isActive})
-export const folderPushFalse = () => ({type: FOLDER_PUSH_FALSE})
-export const folderPushTrue = (isFolder) => ({type: FOLDER_PUSH_TRUE, isFolder})
-export const setId = () => ({type: SET_ID})
-export const setNewFolderName = (newFolderName) => ({type: SET_NEW_FOLDER_NAME, newFolderName})
+export const setFolder = (isActive, path) => ({ type: SET_FOLDER, isActive, path })
+export const folderPushFalse = () => ({ type: FOLDER_PUSH_FALSE })
+export const folderPushTrue = (isFolder) => ({ type: FOLDER_PUSH_TRUE, isFolder })
+export const setId = () => ({ type: SET_ID })
+export const setNewFolderName = (newFolderName) => ({ type: SET_NEW_FOLDER_NAME, newFolderName })
+export const setFol = (lvl) => ({ type: SET_FOL, lvl })
+export const setHiddenActive = (hiddenActive) => ({ type: HIDDEN_ACTIVE, hiddenActive })
+export const checkIsItemFolder = (isItemFolder) => ({ type: IS_ITEM_FOLDER, isItemFolder })
 
 export default filesReducer;

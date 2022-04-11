@@ -92,11 +92,12 @@ ul li {
 
 .main {
   width: 70px;
+  margin: 20px;
 }
 
-.inp{
-  position: relative;
-  left: 600px;
+.inp {
+  position: absolute;
+  left: 50%;
   border-color: black;
   background-color: blue;
   justify-items: center;
@@ -106,16 +107,17 @@ ul li {
   height: 40px;
 
 }
-.inp input{
- width: 100px;
- height: 20px;
- left: 20px;
- top: 10px;
- position: relative;
- left: 10px
+
+.inp input {
+  width: 100px;
+  height: 20px;
+  left: 20px;
+  top: 10px;
+  position: relative;
+  left: 10px
 }
 
-.inp button{
+.inp button {
   position: relative;
   left: 120px;
   padding: 10px;
@@ -123,11 +125,11 @@ ul li {
   bottom: 30px;
 }
 
-.none{
+.none {
   color: black;
   opacity: 0.7;
 }
 
-.isactive{
+.isactive {
   color: red;
 }

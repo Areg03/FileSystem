@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState, memo } from "react"
 
 
-const CreateFolder = ({folderPushTrue, setNewFolderName}) => {
+const CreateFolder = ({ folderPushTrue, setNewFolderName, isItemFolder }) => {
 
     const [name, setName] = useState('');
 
@@ -17,11 +17,11 @@ const CreateFolder = ({folderPushTrue, setNewFolderName}) => {
         folderPushTrue(false)
     }
 
-    return  <div className="inp">
-     <input type={'text'} value={name} onChange={(e) => setName(e.target.value)} />
-     <button onClick={onCreateFolder}>CreateFolder</button>
-     <button onClick={onCreateFile}>CreateFile</button>
-     </div>
+    return <div className="inp" hidden={isItemFolder ? false : true}>
+        <input type={'text'} value={name} onChange={(e) => setName(e.target.value)} />
+        <button onClick={onCreateFolder}>CreateFolder</button>
+        <button onClick={onCreateFile}>CreateFile</button>
+    </div>
 }
 
-export default CreateFolder;
+export default memo(CreateFolder);
