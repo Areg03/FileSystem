@@ -1,3 +1,5 @@
+import lev from '../assets/lev.jpg'
+
 const SET_FOLDER = 'SET_FOLDER';
 const FOLDER_PUSH_FALSE = 'FOLDER_PUSH_FALSE';
 const FOLDER_PUSH_TRUE = 'FOLDER_PUSH_TRUE';
@@ -6,7 +8,10 @@ const SET_NEW_FOLDER_NAME = 'SET_NEW_FOLDER_NAME';
 const HIDDEN_ACTIVE = 'HIDDEN_ACTIVE';
 const IS_ITEM_FOLDER = 'IS_ITEM_FOLDER';
 const SET_FOL = 'SET_FOL';
-
+const SET_FILE = 'SET_FILE';
+const FOLDER_DELETE = 'FOLDER_DELETE';
+const IS_FILE_CHANGE = 'IS_FILE_CHANGE';
+const FILE_CHANGED = 'FILE_CHANGED';
 
 let initialState = {
     mainFolder: {
@@ -18,15 +23,23 @@ let initialState = {
             },
             {
                 id: 4, name: 'four', isFolder: true, hidden: true, items: [
-                    { id: 6, name: 'six', isFolder: false, hidden: true, items: [] },
+                    {
+                        id: 6, name: 'six', isFolder: false, hidden: true, items: [
+                            { img: lev, width: 100, height: 100, header: 'Six', text: 'nothingasdasdadasdasdasdasdasdasdasdadasdadasdsadasdasdasdsadasdsdadada' }
+                        ]
+                    },
                     {
                         id: 7, name: 'seven', isFolder: true, hidden: true, items: [
-                            { id: 8, name: 'eight', isFolder: false, hidden: true, items: [] },
+                            { id: 8, name: 'eight', isFolder: false, hidden: true, items: [
+                                { img: lev, width: 100, height: 100, header: 'Eight', text: 'ndsaotasdhiasdng' }
+                            ] },
                         ]
                     },
                 ]
             },
-            { id: 5, name: 'five', isFolder: false, hidden: true, items: [] },
+            { id: 5, name: 'five', isFolder: false, hidden: true, items: [
+                { img: null, width: null, height: null, header: 'five', text: 'wqerrqr' }
+            ] },
         ]
     },
     isActive: [1],
@@ -38,7 +51,14 @@ let initialState = {
     path: ['first'],
     hiddenActive: 1,
     isItemFolder: true,
-
+    img: null,
+    width: null,
+    height: null,
+    header: null,
+    text: null,
+    folderDelete: false,
+    isFileChange: false,
+    fileChanged: false,
 }
 
 const filesReducer = (state = initialState, action) => {
@@ -97,6 +117,34 @@ const filesReducer = (state = initialState, action) => {
                 isItemFolder: action.isItemFolder,
             }
         }
+        case SET_FILE: {
+            return {
+                ...state,
+                img: action.img,
+                width: action.width,
+                height: action.height,
+                header: action.header,
+                text: action.text,
+            }
+        }
+        case FOLDER_DELETE: {
+            return {
+                ...state,
+                folderDelete: action.folderDelete,
+            }
+        }
+        case IS_FILE_CHANGE: {
+            return {
+                ...state,
+                isFileChange: action.isFileChange,
+            }
+        }
+        case FILE_CHANGED: {
+            return {
+                ...state,
+                fileChanged: action.fileChanged,
+            }
+        }
         default: {
             return state
         }
@@ -111,5 +159,9 @@ export const setNewFolderName = (newFolderName) => ({ type: SET_NEW_FOLDER_NAME,
 export const setFol = (lvl) => ({ type: SET_FOL, lvl })
 export const setHiddenActive = (hiddenActive) => ({ type: HIDDEN_ACTIVE, hiddenActive })
 export const checkIsItemFolder = (isItemFolder) => ({ type: IS_ITEM_FOLDER, isItemFolder })
+export const setFile = (img, width, height, header, text) => ({ type: SET_FILE, img, width, height, header, text })
+export const isFolderDelete = (folderDelete) => ({type: FOLDER_DELETE, folderDelete})
+export const FileChange = (isFileChange) => ({type: IS_FILE_CHANGE, isFileChange})
+export const onFileChanged = (fileChanged) => ({type: FILE_CHANGED, fileChanged})
 
 export default filesReducer;

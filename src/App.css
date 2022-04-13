@@ -74,14 +74,43 @@ ul li {
   list-style: none;
 }
 
-.img {
+img {
   vertical-align: top;
+}
+
+.all {
+  display: grid;
+
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  grid-template-areas: 's f';
+}
+
+.system {
+  height: 53.2rem;
+  grid-area: s;
+  overflow: auto;
+
+}
+
+.fileContent {
+  z-index: 1;
+  word-break: break-all;
+  grid-area: f;
+  text-align: center;
+}
+
+.fileContent img {
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 400px;
+  max-height: 300px;
 }
 
 .folder img {
   width: 80px;
   height: 50px;
-
+  cursor: pointer;
 }
 
 .main>.item {
@@ -96,13 +125,11 @@ ul li {
 }
 
 .inp {
-  position: absolute;
-  left: 50%;
+  
+  margin-left: 50%;
   border-color: black;
   background-color: blue;
-  justify-items: center;
   width: 120px;
-  align-items: center;
   top: 20px;
   height: 40px;
 
@@ -132,4 +159,25 @@ ul li {
 
 .isactive {
   color: red;
+}
+
+.changeName{
+  font-size: 17px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: blue;
+}
+
+.changeName:hover{
+  text-decoration: underline;
+  color: red;
+  cursor: pointer;
+}
+
+.fileChange {
+  z-index: 2;
+  padding: 40px;
+  width: 350px;
+  height: 250px;
 }

@@ -1,26 +1,41 @@
 import { useState, memo } from "react"
 
 
-const CreateFolder = ({ folderPushTrue, setNewFolderName, isItemFolder }) => {
+const CreateFolder = ({ folderPushTrue, setNewFolderName, isItemFolder, isFolderDelete }) => {
 
     const [name, setName] = useState('');
 
     const onCreateFolder = () => {
-        setNewFolderName(name);
-        setName('')
-        folderPushTrue(true)
+        if (isItemFolder === true) {
+            setNewFolderName(name);
+            setName('')
+            folderPushTrue(true)
+        }
+
     }
 
     const onCreateFile = () => {
-        setNewFolderName(name);
-        setName('')
-        folderPushTrue(false)
+        if (isItemFolder === true) {
+            setNewFolderName(name);
+            setName('')
+            folderPushTrue(false)
+        }
     }
 
-    return <div className="inp" hidden={isItemFolder ? false : true}>
-        <input type={'text'} value={name} onChange={(e) => setName(e.target.value)} />
+    const onDelete = () => {
+
+        isFolderDelete(true)
+    }
+
+    const updateNewPostText = (e) => {
+        if (e.target.value !== ' ' && e.target.value.length !== 20) setName(e.target.value)
+    }
+
+    return <div className="inp" >
+        <input type={'text'} value={name} onChange={updateNewPostText} />
         <button onClick={onCreateFolder}>CreateFolder</button>
         <button onClick={onCreateFile}>CreateFile</button>
+        <button onClick={onDelete}>DeleteFile</button>
     </div>
 }
 
