@@ -28,7 +28,7 @@ const CreateFolder = ({ folderPushTrue, setNewFolderName, isItemFolder, isFolder
     }
 
     const updateNewPostText = (e) => {
-        if (e.target.value !== ' ' && e.target.value.length !== 20) setName(e.target.value)
+        if (e.target.value !== ' ' && e.target.value.length !== 25) setName(e.target.value)
     }
 
     return <div className="inp" >

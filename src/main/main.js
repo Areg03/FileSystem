@@ -4,20 +4,30 @@ import Folder from "./folder"
 const Main = ({ folders, isActive, setFolder, folderPush,
     folderPushFalse, id, setId, newFolderName, isFolder, lvl, path, setFol,
     hiddenActive, setHiddenActive, checkIsItemFolder, setFile, folderDelete,
-    isFolderDelete, isFileChange, img, width, height, header, text, fileChanged, onFileChanged }) => {
+    isFolderDelete, isFileChange, img, width, height, header, text, fileChanged, onFileChanged, onFileHidden }) => {
 
-
+    console.log(folders.name, folders.items)
     const a = folders.items.find(item => item.id === hiddenActive)
     useEffect(() => {
-        if (folderPush === true && hiddenActive === folders.id
+        if (folderPush === true && isFolder === true && hiddenActive === folders.id
             && newFolderName !==
             '' && newFolderName !== null) {
 
-            { folders.isFolder && folders.items.push({ id, name: newFolderName, isFolder, hidden: true, items: [] }) }
-            { !folders.isFolder && folders.items.push({ img: null, width: null, height: null, header: null, text: null }) }
+            folders.items.push({ id, name: newFolderName, isFolder, hidden: true, items: [] })
+
             setId()
             folderPushFalse();
-        } else {
+        } else if (folderPush === true && isFolder === false && hiddenActive === folders.id
+            && newFolderName !==
+            '' && newFolderName !== null) {
+            folders.items.push({
+                id, name: newFolderName, isFolder, hidden: true, items: [
+                    { img: null, width: null, height: null, header: null, text: null }
+                ]
+            })
+
+        }
+        else {
             folderPushFalse()
         }
         { folders.isFolder === true && hiddenActive === folders.id && checkIsItemFolder(true) }
@@ -30,6 +40,8 @@ const Main = ({ folders, isActive, setFolder, folderPush,
             isFolderDelete(false)
         }
         if (fileChanged === true && folders.isFolder === false && folders.id === hiddenActive) {
+            if (width > 200) width = 200;
+            if (height > 200) height = 200;
             folders.items[0].img = img;
             folders.items[0].width = width;
             folders.items[0].height = height;
@@ -50,6 +62,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
         if (folders.isFolder === false) {
             setFile(folders.items[0].img, folders.items[0].width, folders.items[0].height,
                 folders.items[0].header, folders.items[0].text)
+            onFileHidden(false)
         }
     }
 
@@ -81,8 +94,8 @@ const Main = ({ folders, isActive, setFolder, folderPush,
                         checkIsItemFolder={checkIsItemFolder} setFile={setFile}
                         folderDelete={folderDelete} isFolderDelete={isFolderDelete}
                         isFileChange={isFileChange} img={img} width={width} height={height}
-                        header={header} text={text}
-                        fileChanged={fileChanged} onFileChanged={onFileChanged} />}
+                        header={header} text={text} fileChanged={fileChanged}
+                        onFileChanged={onFileChanged} onFileHidden={onFileHidden} />}
                 </div>
                 ))}
             </div>

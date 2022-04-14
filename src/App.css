@@ -100,11 +100,34 @@ img {
   text-align: center;
 }
 
-.fileContent img {
-  min-width: 100px;
-  min-height: 100px;
-  max-width: 400px;
-  max-height: 300px;
+.fileContent p {
+  font-size: 20px;
+  font-family: cursive;
+  text-align: left;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-top: 10px;
+}
+
+.fileChange {
+  position: absolute;
+  border: 3px solid black;
+
+}
+
+.fileChange input {
+  border: 3px solid black;
+  margin: 5px;
+}
+
+.fileChange button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.fileChange input {
+  width: 200px;
 }
 
 .folder img {
@@ -125,7 +148,7 @@ img {
 }
 
 .inp {
-  
+
   margin-left: 50%;
   border-color: black;
   background-color: blue;
@@ -141,7 +164,8 @@ img {
   left: 20px;
   top: 10px;
   position: relative;
-  left: 10px
+  left: 10px;
+  
 }
 
 .inp button {
@@ -161,23 +185,51 @@ img {
   color: red;
 }
 
-.changeName{
+.changeName {
   font-size: 17px;
   position: absolute;
-  right: 0;
   top: 0;
+  right: 50%;
   color: blue;
 }
 
-.changeName:hover{
+.changeName:hover {
   text-decoration: underline;
   color: red;
   cursor: pointer;
 }
 
 .fileChange {
+  position: absolute;
+  right: 20%;
+  top: 20%;
   z-index: 2;
   padding: 40px;
   width: 350px;
   height: 250px;
+}
+
+.x {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 30px;
+  color: red;
+}
+
+.x:hover {
+  cursor: pointer;
+}
+
+.quit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 50px;
+}
+
+.quit:hover {
+  cursor: pointer;
+  color: red;
+  text-decoration: underline;
 }

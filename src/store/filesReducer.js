@@ -12,6 +12,7 @@ const SET_FILE = 'SET_FILE';
 const FOLDER_DELETE = 'FOLDER_DELETE';
 const IS_FILE_CHANGE = 'IS_FILE_CHANGE';
 const FILE_CHANGED = 'FILE_CHANGED';
+const FILE_HIDDEN = 'FILE_HIDDEN';
 
 let initialState = {
     mainFolder: {
@@ -59,6 +60,7 @@ let initialState = {
     folderDelete: false,
     isFileChange: false,
     fileChanged: false,
+    fileHidden: true,
 }
 
 const filesReducer = (state = initialState, action) => {
@@ -145,6 +147,12 @@ const filesReducer = (state = initialState, action) => {
                 fileChanged: action.fileChanged,
             }
         }
+        case FILE_HIDDEN: {
+            return {
+                ...state,
+                fileHidden: action.fileHidden,
+            }
+        }
         default: {
             return state
         }
@@ -163,5 +171,6 @@ export const setFile = (img, width, height, header, text) => ({ type: SET_FILE, 
 export const isFolderDelete = (folderDelete) => ({type: FOLDER_DELETE, folderDelete})
 export const FileChange = (isFileChange) => ({type: IS_FILE_CHANGE, isFileChange})
 export const onFileChanged = (fileChanged) => ({type: FILE_CHANGED, fileChanged})
+export const onFileHidden = (fileHidden) => ({type: FILE_HIDDEN, fileHidden})
 
 export default filesReducer;

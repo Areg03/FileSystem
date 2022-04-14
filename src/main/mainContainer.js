@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 import {
     setFolder, folderPushFalse, folderPushTrue, setId,
     setNewFolderName, setFol, setHiddenActive, checkIsItemFolder,
-    setFile, isFolderDelete, FileChange, onFileChanged
+    setFile, isFolderDelete, FileChange, onFileChanged, onFileHidden
 } from "../store/filesReducer"
 import Content from "./content"
 import CreateFolder from "./createFolder"
@@ -29,13 +29,15 @@ const MainContainer = (props) => {
                 setHiddenActive={props.setHiddenActive} checkIsItemFolder={props.checkIsItemFolder}
                 setFile={props.setFile} isFolderDelete={props.isFolderDelete} folderDelete={props.folderDelete}
                 isFileChange={props.isFileChange} img={props.img} width={props.width} height={props.height}
-                header={props.header} text={props.text} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged} />
+                header={props.header} text={props.text} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged}
+                onFileHidden={props.onFileHidden} />
         </div>
-        <div className="fileContent">
+        <div className="fileContent" hidden={props.fileHidden} >
             <Content img={props.img} width={props.width}
                 height={props.height} header={props.header} text={props.text}
                 isFileChange={props.isFileChange} FileChange={props.FileChange}
-                setFile={props.setFile} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged} />
+                setFile={props.setFile} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged}
+                onFileHidden={props.onFileHidden} />
         </div>
     </div>
 }
@@ -61,6 +63,7 @@ let mapStateToProps = (state) => ({
     folderDelete: state.foldersPage.folderDelete,
     isFileChange: state.foldersPage.isFileChange,
     fileChanged: state.foldersPage.fileChanged,
+    fileHidden: state.foldersPage.fileHidden,
 })
 
 let mapDispatchToProps = {
@@ -76,6 +79,7 @@ let mapDispatchToProps = {
     isFolderDelete,
     FileChange,
     onFileChanged,
+    onFileHidden,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer)
