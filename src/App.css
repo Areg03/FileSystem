@@ -90,7 +90,7 @@ img {
   height: 53.2rem;
   grid-area: s;
   overflow: auto;
-
+  background-color: white;
 }
 
 .fileContent {
@@ -110,25 +110,38 @@ img {
 }
 
 .fileChange {
+  background-color: skyblue;
   position: absolute;
-  border: 3px solid black;
+  border: 2px solid grey ;
+  border-radius: 10px;
+  right: 20%;
+  top: 20%;
+  z-index: 2;
+  padding: 40px;
+  width: 350px;
+  height: 250px;
+}
 
+.inpGroup{
+  position: relative;
+  bottom: 20px;
 }
 
 .fileChange input {
-  border: 3px solid black;
+  border: 2px solid blue;
   margin: 5px;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
 }
 
 .fileChange button {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 1%;
+  right: 1%;
 }
 
-.fileChange input {
-  width: 200px;
-}
+
 
 .folder img {
   width: 80px;
@@ -150,8 +163,6 @@ img {
 .inp {
 
   margin-left: 50%;
-  border-color: black;
-  background-color: blue;
   width: 120px;
   top: 20px;
   height: 40px;
@@ -159,21 +170,26 @@ img {
 }
 
 .inp input {
+  border: 2px solid blue;
+  border-radius: 5px;
   width: 100px;
-  height: 20px;
+  height: 30px;
   left: 20px;
   top: 10px;
   position: relative;
   left: 10px;
+  font-size: 18px;
   
 }
 
 .inp button {
+  
   position: relative;
   left: 120px;
   padding: 10px;
   margin: 10px;
   bottom: 30px;
+  
 }
 
 .none {
@@ -188,9 +204,9 @@ img {
 .changeName {
   font-size: 17px;
   position: absolute;
-  top: 0;
-  right: 50%;
-  color: blue;
+  top: 0.5%;
+  right: 44%;
+  color: red;
 }
 
 .changeName:hover {
@@ -211,9 +227,9 @@ img {
 
 .x {
   position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 30px;
+  right: 1%;
+  top: 1%;
+  font-size: 20px;
   color: red;
 }
 
@@ -223,13 +239,25 @@ img {
 
 .quit {
   position: absolute;
-  right: 0;
+  right: 1%;
   top: 0;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .quit:hover {
   cursor: pointer;
   color: red;
   text-decoration: underline;
+}
+
+.createFile{
+  position: relative;
+  left: 97%;
+  bottom: 130%;
+}
+
+.delete{
+  position: relative;
+  bottom: 150%;
+  left: 52%;
 }

@@ -1,27 +1,36 @@
-import { useState } from "react";
+import { Button, Input } from "antd";
+import { useEffect, useState } from "react";
 
-const OnFileChange = ({ FileChange, setFile, fileChanged, onFileChanged }) => {
-    const [img, setImg] = useState('')
-    const [width, setWidth] = useState('')
-    const [height, setHeight] = useState('')
-    const [header, setHeader] = useState('')
-    const [text, setText] = useState('')
+const OnFileChange = ({ FileChange, setFile, onFileChanged, isFileChange, img, width, height, header, text }) => {
+    const [aimg, setaImg] = useState('')
+    const [awidth, setaWidth] = useState('')
+    const [aheight, setaHeight] = useState('')
+    const [aheader, setaHeader] = useState('')
+    const [atext, setaText] = useState('')
+
+    useEffect(() => {
+        setaImg(img)
+        setaHeader(header)
+        setaWidth(width)
+        setaHeight(height)
+        setaText(text)
+    },[isFileChange])
 
 
-    const setSome = (e, setImg) => {
-        return setImg(e)
+    const setSome = (e, setaImg) => {
+        return setaImg(e)
     }
 
     const onButtonClick = () => {
-        if (height > 250 && width <= 350) {
-            setFile(img, width, 250, header, text);
-        } else if (width > 350 && height <= 250) {
-            setFile(img, 350, height, header, text);
+        if (aheight > 250 && awidth <= 350) {
+            setFile(aimg, awidth, 250, aheader, atext);
+        } else if (awidth > 350 && aheight <= 250) {
+            setFile(aimg, 350, aheight, aheader, atext);
         }
-        else if (height > 250 && width > 350) {
-            setFile(img, 350, 250, header, text);
+        else if (aheight > 250 && awidth > 350) {
+            setFile(aimg, 350, 250, aheader, atext);
         } else {
-            setFile(img, width, height, header, text);
+            setFile(aimg, awidth, aheight, aheader, atext);
         }
         onFileChanged(true)
 
@@ -35,12 +44,17 @@ const OnFileChange = ({ FileChange, setFile, fileChanged, onFileChanged }) => {
     return (
         <div className="fileChange">
             <div className="x" onClick={() => onXClick()}>X</div>
-            <input type={'text'} placeholder={'img (Enter src without brackets)'} value={img} onChange={(e) => setSome(e.target.value, setImg)} />
-            <input type={'number'} placeholder={'width'} value={width} onChange={(e) => setSome(e.target.value, setWidth)} />
-            <input type={'number'} placeholder={'height'} value={height} onChange={(e) => setSome(e.target.value, setHeight)} />
-            <input type={'text'} placeholder={'header'} value={header} onChange={(e) => setSome(e.target.value, setHeader)} />
-            <input type={'text'} placeholder={'text'} value={text} onChange={(e) => setSome(e.target.value, setText)} />
-            <button onClick={onButtonClick}>changeFile</button>
+            <div className="inpGroup">
+            <Input.Group  >
+                <Input  type={'text'} placeholder={'img (Enter src without quotes)'} value={aimg} onChange={(e) => setSome(e.target.value, setaImg)} />
+                <Input type={'number'} placeholder={'width(aimg)'} value={awidth} onChange={(e) => setSome(e.target.value, setaWidth)} />
+                <Input type={'number'} placeholder={'height(aimg)'} value={aheight} onChange={(e) => setSome(e.target.value, setaHeight)} />
+                <Input type={'text'} placeholder={'header'} value={aheader} onChange={(e) => setSome(e.target.value, setaHeader)} />
+                <Input type={'text'} placeholder={'text'} value={atext} onChange={(e) => setSome(e.target.value, setaText)} />
+            </Input.Group>
+            </div>
+            <Button type="primary" onClick={onButtonClick}>changeFile</Button>
+            
         </div>
     )
 }

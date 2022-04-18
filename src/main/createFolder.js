@@ -1,3 +1,4 @@
+import { Button, Input } from "antd";
 import { useState, memo } from "react"
 
 
@@ -32,10 +33,16 @@ const CreateFolder = ({ folderPushTrue, setNewFolderName, isItemFolder, isFolder
     }
 
     return <div className="inp" >
-        <input type={'text'} value={name} onChange={updateNewPostText} />
-        <button onClick={onCreateFolder}>CreateFolder</button>
-        <button onClick={onCreateFile}>CreateFile</button>
-        <button onClick={onDelete}>DeleteFile</button>
+        <Input type={'text'} value={name} onChange={updateNewPostText} />
+        <div className="createFolder">
+            <Button type="primary" onClick={onCreateFolder}>CreateFolder</Button>
+        </div>
+        <div className="createFile">
+            <Button type="primary" onClick={onCreateFile}>CreateFile</Button>
+        </div>
+        <div className="delete" >
+            <Button type="primary" onClick={onDelete}>DeleteFile</Button>
+        </div>
     </div>
 }
 

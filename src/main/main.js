@@ -6,7 +6,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
     hiddenActive, setHiddenActive, checkIsItemFolder, setFile, folderDelete,
     isFolderDelete, isFileChange, img, width, height, header, text, fileChanged, onFileChanged, onFileHidden }) => {
 
-
+    
     const a = folders.items.find(item => item.id === hiddenActive)
     useEffect(() => {
         if (folderPush === true && isFolder === true && hiddenActive === folders.id

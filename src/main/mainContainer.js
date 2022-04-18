@@ -32,7 +32,7 @@ const MainContainer = (props) => {
                 header={props.header} text={props.text} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged}
                 onFileHidden={props.onFileHidden} />
         </div>
-        <div className="fileContent" hidden={props.fileHidden} >
+        <div className="fileContent" hidden={props.fileHidden}  style={{background: 'grey'}} >
             <Content img={props.img} width={props.width}
                 height={props.height} header={props.header} text={props.text}
                 isFileChange={props.isFileChange} FileChange={props.FileChange}

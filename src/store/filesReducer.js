@@ -32,7 +32,7 @@ let initialState = {
                     {
                         id: 7, name: 'seven', isFolder: true, hidden: true, items: [
                             { id: 8, name: 'eight', isFolder: false, hidden: true, items: [
-                                { img: lev, width: 100, height: 100, header: 'Eight', text: 'ndsaotasdhiasdng' }
+                                { img: 'https://media.istockphoto.com/photos/-picture-id1389203436', width: 100, height: 100, header: 'Eight', text: 'ndsaotasdhiasdng' }
                             ] },
                         ]
                     },
