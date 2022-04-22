@@ -1,0 +1,62 @@
+.all {
+    display: grid;
+
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    grid-template-areas: 's f';
+}
+
+.system {
+    height: 53.2rem;
+    grid-area: s;
+    overflow: auto;
+    background-color: white;
+}
+
+.fileContent {
+    z-index: 1;
+    word-break: break-all;
+    grid-area: f;
+    text-align: center;
+}
+
+.fileContent p {
+    font-size: 20px;
+    font-family: cursive;
+    text-align: left;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-top: 10px;
+}
+
+.main>.item {
+    position: relative;
+    left: 70px;
+    width: 80px;
+}
+
+.main {
+    width: 70px;
+    margin: 20px;
+}
+
+.mainDisabled {
+    width: 70px;
+    margin: 20px;
+    pointer-events: none;
+}
+
+.mainDisabled>.item {
+    position: relative;
+    left: 70px;
+    width: 80px;
+}
+
+.none {
+    color: black;
+    opacity: 0.6;
+}
+
+.isactive {
+    color: red;
+}

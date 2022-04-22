@@ -1,0 +1,29 @@
+.changeName {
+    font-size: 17px;
+    position: absolute;
+    top: 0.5%;
+    right: 44%;
+    color: red;
+  }
+  
+  .changeName:hover {
+    text-decoration: underline;
+    color: red;
+    cursor: pointer;
+  }
+  
+  
+  
+  
+  .quit {
+    position: absolute;
+    right: 1%;
+    top: 0;
+    font-size: 30px;
+  }
+  
+  .quit:hover {
+    cursor: pointer;
+    color: red;
+    text-decoration: underline;
+  }

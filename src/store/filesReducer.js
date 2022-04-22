@@ -13,6 +13,7 @@ const FOLDER_DELETE = 'FOLDER_DELETE';
 const IS_FILE_CHANGE = 'IS_FILE_CHANGE';
 const FILE_CHANGED = 'FILE_CHANGED';
 const FILE_HIDDEN = 'FILE_HIDDEN';
+const CREATE_MENU_HIDDEN = 'CREATE_MENU_HIDDEN';
 
 let initialState = {
     mainFolder: {
@@ -61,6 +62,7 @@ let initialState = {
     isFileChange: false,
     fileChanged: false,
     fileHidden: true,
+    createMenuHidden: true,
 }
 
 const filesReducer = (state = initialState, action) => {
@@ -153,6 +155,12 @@ const filesReducer = (state = initialState, action) => {
                 fileHidden: action.fileHidden,
             }
         }
+        case CREATE_MENU_HIDDEN : {
+            return {
+                ...state,
+                createMenuHidden: action.hidden,
+            }
+        }
         default: {
             return state
         }
@@ -172,5 +180,6 @@ export const isFolderDelete = (folderDelete) => ({type: FOLDER_DELETE, folderDel
 export const FileChange = (isFileChange) => ({type: IS_FILE_CHANGE, isFileChange})
 export const onFileChanged = (fileChanged) => ({type: FILE_CHANGED, fileChanged})
 export const onFileHidden = (fileHidden) => ({type: FILE_HIDDEN, fileHidden})
+export const onCreateMenuHidden = (hidden) => ({type: CREATE_MENU_HIDDEN, hidden})
 
 export default filesReducer;

@@ -2,11 +2,13 @@ import { connect } from "react-redux"
 import {
     setFolder, folderPushFalse, folderPushTrue, setId,
     setNewFolderName, setFol, setHiddenActive, checkIsItemFolder,
-    setFile, isFolderDelete, FileChange, onFileChanged, onFileHidden
+    setFile, isFolderDelete, FileChange, onFileChanged, onFileHidden,
+    onCreateMenuHidden
 } from "../store/filesReducer"
-import Content from "./content"
-import CreateFolder from "./createFolder"
+import Content from "./content/content"
+import CreateFolder from "./createFolder/createFolder"
 import Main from "./main"
+import s from "./main.module.css"
 
 const MainContainer = (props) => {
     let path = props.path[0];
@@ -14,13 +16,14 @@ const MainContainer = (props) => {
         path += '/' + props.path[i];
     }
 
-    return <div className="all">
-        <div className="system">
+    return <div className={s.all} >
+        <div className={s.system} >
             <div>
                 {path}
             </div>
             <CreateFolder folderPushTrue={props.folderPushTrue} setNewFolderName={props.setNewFolderName}
-                isItemFolder={props.isItemFolder} isFolderDelete={props.isFolderDelete} />
+                isItemFolder={props.isItemFolder} isFolderDelete={props.isFolderDelete}
+                onCreateMenuHidden={props.onCreateMenuHidden} createMenuHidden={props.createMenuHidden} />
             <Main folders={props.folders} isActive={props.isActive}
                 setFolder={props.setFolder} folderPush={props.folderPush}
                 folderPushFalse={props.folderPushFalse} id={props.id} setId={props.setId}
@@ -30,14 +33,15 @@ const MainContainer = (props) => {
                 setFile={props.setFile} isFolderDelete={props.isFolderDelete} folderDelete={props.folderDelete}
                 isFileChange={props.isFileChange} img={props.img} width={props.width} height={props.height}
                 header={props.header} text={props.text} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged}
-                onFileHidden={props.onFileHidden} />
+                onFileHidden={props.onFileHidden} createMenuHidden={props.createMenuHidden} />
         </div>
-        <div className="fileContent" hidden={props.fileHidden}  style={{background: 'grey'}} >
+        <div className={s.fileContent} hidden={props.fileHidden} style={{ background: 'grey' }} >
             <Content img={props.img} width={props.width}
                 height={props.height} header={props.header} text={props.text}
                 isFileChange={props.isFileChange} FileChange={props.FileChange}
                 setFile={props.setFile} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged}
-                onFileHidden={props.onFileHidden} />
+                onFileHidden={props.onFileHidden}
+            />
         </div>
     </div>
 }
@@ -64,6 +68,7 @@ let mapStateToProps = (state) => ({
     isFileChange: state.foldersPage.isFileChange,
     fileChanged: state.foldersPage.fileChanged,
     fileHidden: state.foldersPage.fileHidden,
+    createMenuHidden: state.foldersPage.createMenuHidden,
 })
 
 let mapDispatchToProps = {
@@ -80,6 +85,7 @@ let mapDispatchToProps = {
     FileChange,
     onFileChanged,
     onFileHidden,
+    onCreateMenuHidden
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer)

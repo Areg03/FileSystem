@@ -1,5 +1,6 @@
 import { Button, Input } from "antd";
 import { useEffect, useState } from "react";
+import s from './fileChange.module.css'
 
 const OnFileChange = ({ FileChange, setFile, onFileChanged, isFileChange, img, width, height, header, text }) => {
     const [aimg, setaImg] = useState('')
@@ -42,13 +43,13 @@ const OnFileChange = ({ FileChange, setFile, onFileChanged, isFileChange, img, w
     }
 
     return (
-        <div className="fileChange">
-            <div className="x" onClick={() => onXClick()}>X</div>
-            <div className="inpGroup">
+        <div className={s.fileChange}>
+            <div className={s.fileClose} onClick={() => onXClick()}>X</div>
+            <div className={s.inpGroup}>
             <Input.Group  >
                 <Input  type={'text'} placeholder={'img (Enter src without quotes)'} value={aimg} onChange={(e) => setSome(e.target.value, setaImg)} />
-                <Input type={'number'} placeholder={'width(aimg)'} value={awidth} onChange={(e) => setSome(e.target.value, setaWidth)} />
-                <Input type={'number'} placeholder={'height(aimg)'} value={aheight} onChange={(e) => setSome(e.target.value, setaHeight)} />
+                <Input type={'number'} placeholder={'width(img)'} value={awidth} onChange={(e) => setSome(e.target.value, setaWidth)} />
+                <Input type={'number'} placeholder={'height(img)'} value={aheight} onChange={(e) => setSome(e.target.value, setaHeight)} />
                 <Input type={'text'} placeholder={'header'} value={aheader} onChange={(e) => setSome(e.target.value, setaHeader)} />
                 <Input type={'text'} placeholder={'text'} value={atext} onChange={(e) => setSome(e.target.value, setaText)} />
             </Input.Group>

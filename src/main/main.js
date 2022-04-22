@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react"
-import Folder from "./folder"
+import Folder from "./folder/folder"
+import s from "./main.module.css"
 
 const Main = ({ folders, isActive, setFolder, folderPush,
     folderPushFalse, id, setId, newFolderName, isFolder, lvl, path, setFol,
     hiddenActive, setHiddenActive, checkIsItemFolder, setFile, folderDelete,
-    isFolderDelete, isFileChange, img, width, height, header, text, fileChanged, onFileChanged, onFileHidden }) => {
+    isFolderDelete, isFileChange, img, width, height, header, text, fileChanged,
+     onFileChanged, onFileHidden, createMenuHidden }) => {
 
-    
+
     const a = folders.items.find(item => item.id === hiddenActive)
     useEffect(() => {
         if (folderPush === true && isFolder === true && hiddenActive === folders.id
             && newFolderName !==
             '' && newFolderName !== null) {
+            //create folder
 
             folders.items.push({ id, name: newFolderName, isFolder, hidden: true, items: [] })
 
@@ -20,11 +23,14 @@ const Main = ({ folders, isActive, setFolder, folderPush,
         } else if (folderPush === true && isFolder === false && hiddenActive === folders.id
             && newFolderName !==
             '' && newFolderName !== null) {
+            //create file
             folders.items.push({
                 id, name: newFolderName, isFolder, hidden: true, items: [
                     { img: null, width: null, height: null, header: null, text: null }
                 ]
             })
+            setId()
+            folderPushFalse()
 
         }
         else {
@@ -33,6 +39,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
         { folders.isFolder === true && hiddenActive === folders.id && checkIsItemFolder(true) }
         { folders.isFolder === false && hiddenActive === folders.id && checkIsItemFolder(false) }
         if (folderDelete === true && a !== undefined && hiddenActive !== 1) {
+            // delete
             folders.items.splice(folders.items.indexOf(a), 1)
             setHiddenActive(folders.id)
             isFolderDelete(false)
@@ -40,8 +47,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
             isFolderDelete(false)
         }
         if (fileChanged === true && folders.isFolder === false && folders.id === hiddenActive) {
-            if (width > 200) width = 200;
-            if (height > 200) height = 200;
+            //file changed
             folders.items[0].img = img;
             folders.items[0].width = width;
             folders.items[0].height = height;
@@ -81,11 +87,11 @@ const Main = ({ folders, isActive, setFolder, folderPush,
     { !isActive.includes(folders.id) && aimg === false && isHiddenOnly() }
 
     return (
-        <div className="main">
-            <div onClick={onImgClick} onDoubleClick={onDoubleImgClick} className={hiddenActive === folders.id ? 'isactive' : 'none'}>
+        <div className={createMenuHidden? s.main : s.mainDisabled }  >
+            <div onClick={onImgClick} onDoubleClick={onDoubleImgClick} className={hiddenActive === folders.id ? s.isactive : s.none}>
                 <Folder name={folders.name} img={aimg} isFolder={folders.isFolder} />
             </div >
-            <div className="item" hidden={folders.hidden}>
+            <div className={s.item} hidden={folders.hidden}>
                 {folders.items.map((folder) => (<div key={folder.id}>
                     {folder.id && <Main folders={folder} isActive={isActive} setFolder={setFolder}
                         folderPush={folderPush} folderPushFalse={folderPushFalse} id={id} setId={setId}
@@ -95,7 +101,8 @@ const Main = ({ folders, isActive, setFolder, folderPush,
                         folderDelete={folderDelete} isFolderDelete={isFolderDelete}
                         isFileChange={isFileChange} img={img} width={width} height={height}
                         header={header} text={text} fileChanged={fileChanged}
-                        onFileChanged={onFileChanged} onFileHidden={onFileHidden} />}
+                        onFileChanged={onFileChanged} onFileHidden={onFileHidden}
+                        createMenuHidden={createMenuHidden} />}
                 </div>
                 ))}
             </div>
