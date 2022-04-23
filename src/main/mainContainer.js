@@ -17,7 +17,7 @@ const MainContainer = (props) => {
         path += '/' + props.path[i];
     }
 
-    return <div className={(props.createMenuHidden && !props.isFileChange) ? s.all : s.allDisabled} >
+    return <div className={!props.isFileChange ? s.all : s.allDisabled} >
         <div className={s.system} >
             <div>
                 {path}
