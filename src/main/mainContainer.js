@@ -11,12 +11,13 @@ import Main from "./main"
 import s from "./main.module.css"
 
 const MainContainer = (props) => {
+
     let path = props.path[0];
     for (let i = 1; i < props.path.length; i++) {
         path += '/' + props.path[i];
     }
 
-    return <div className={s.all} >
+    return <div className={(props.createMenuHidden && !props.isFileChange) ? s.all : s.allDisabled} >
         <div className={s.system} >
             <div>
                 {path}
@@ -35,12 +36,13 @@ const MainContainer = (props) => {
                 header={props.header} text={props.text} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged}
                 onFileHidden={props.onFileHidden} createMenuHidden={props.createMenuHidden} />
         </div>
-        <div className={s.fileContent} hidden={props.fileHidden} style={{ background: 'grey' }} >
+        <div hidden={props.fileHidden} >
             <Content img={props.img} width={props.width}
                 height={props.height} header={props.header} text={props.text}
                 isFileChange={props.isFileChange} FileChange={props.FileChange}
                 setFile={props.setFile} fileChanged={props.fileChanged} onFileChanged={props.onFileChanged}
-                onFileHidden={props.onFileHidden}
+                onFileHidden={props.onFileHidden} onCreateMenuHidden={props.onCreateMenuHidden}
+                createMenuHidden={props.createMenuHidden}
             />
         </div>
     </div>

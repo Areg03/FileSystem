@@ -1,4 +1,4 @@
-.all {
+.all, .allDisabled {
     display: grid;
 
     grid-template-columns: 50% 50%;
@@ -6,28 +6,19 @@
     grid-template-areas: 's f';
 }
 
+.allDisabled{
+    pointer-events: none;
+}
+
+
 .system {
     height: 53.2rem;
     grid-area: s;
-    overflow: auto;
+    overflow-y: auto;
     background-color: white;
 }
 
-.fileContent {
-    z-index: 1;
-    word-break: break-all;
-    grid-area: f;
-    text-align: center;
-}
 
-.fileContent p {
-    font-size: 20px;
-    font-family: cursive;
-    text-align: left;
-    margin-left: 40px;
-    margin-right: 40px;
-    padding-top: 10px;
-}
 
 .main>.item {
     position: relative;
@@ -35,9 +26,15 @@
     width: 80px;
 }
 
+
+
 .main {
     width: 70px;
     margin: 20px;
+}
+
+.main input{
+    width: 70px;
 }
 
 .mainDisabled {

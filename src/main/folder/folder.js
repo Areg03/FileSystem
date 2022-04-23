@@ -7,7 +7,6 @@ const Folder = (props) => {
     return (
         <div className={s.folder}>
             <img src={props.isFolder ? (props.img ? foldimg : openFoldImg) : fileImg} />
-            <div>{props.name}</div>
         </div>
     )
 }

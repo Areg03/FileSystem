@@ -26,22 +26,37 @@ let initialState = {
             {
                 id: 4, name: 'four', isFolder: true, hidden: true, items: [
                     {
-                        id: 6, name: 'six', isFolder: false, hidden: true, items: [
-                            { img: lev, width: 100, height: 100, header: 'Six', text: 'nothingasdasdadasdasdasdasdasdasdasdadasdadasdsadasdasdasdsadasdsdadada' }
+                        id: 6, name: 'lion', isFolder: false, hidden: true, items: [
+                            {
+                                img: lev, width: 100, height: 100, header: 'Lion', text: `The lion (Panthera leo) is a large cat of the genus Panthera native to Africa and India.
+                             It has a muscular, deep-chested body, short, rounded head, round ears, and a hairy tuft at the end of its tail. It is sexually dimorphic; adult male lions are larger than females and have a prominent mane.
+                              It is a social species, forming groups called prides. A lion's pride consists of a few adult males, related females, and cubs. Groups of female lions usually hunt together, preying mostly on large ungulates.
+                               The lion is an apex and keystone predator; although some lions scavenge when opportunities occur and have been known to hunt humans, the species typically does not.` }
                         ]
                     },
                     {
                         id: 7, name: 'seven', isFolder: true, hidden: true, items: [
-                            { id: 8, name: 'eight', isFolder: false, hidden: true, items: [
-                                { img: 'https://media.istockphoto.com/photos/-picture-id1389203436', width: 100, height: 100, header: 'Eight', text: 'ndsaotasdhiasdng' }
-                            ] },
+                            {
+                                id: 8, name: 'pig', isFolder: false, hidden: true, items: [
+                                    {
+                                        img: 'https://media.istockphoto.com/photos/-picture-id1389203436', width: 350, height: 250, header: 'pig', text: `The pig (Sus domesticus), often called swine, hog, or domestic pig when distinguishing from other members of the genus Sus,
+                                         is an omnivorous, domesticated, even-toed, hoofed mammal. It is variously considered a subspecies of Sus scrofa (the wild boar or Eurasian boar) or a distinct species. The pig's head-plus-body length ranges from 0.9 to 1.8 m (3 to 6 ft),
+                                 and adult pigs typically weigh between 50 and 350 kg (110 and 770 lb), with well-fed individuals even exceeding this range.
+                                  The size and weight of hogs largely depends on their breed. Compared to other artiodactyls, a pig's head is relatively long and pointed. Most even-toed ungulates are herbivorous, but pigs are omnivores, like their wild relative. Pigs grunt and make snorting sounds.` }
+                                ]
+                            },
                         ]
                     },
                 ]
             },
-            { id: 5, name: 'five', isFolder: false, hidden: true, items: [
-                { img: null, width: null, height: null, header: 'five', text: 'wqerrqr' }
-            ] },
+            {
+                id: 5, name: 'monkey', isFolder: false, hidden: true, items: [
+                    {
+                        img: 'https://worldbirds.com/wp-content/uploads/2020/05/monkey11-1024x652.jpg', width: 350, height: 250, header: 'monkey', text: `Monkey is a common name that may refer to most mammals of the infraorder Simiiformes, also known as the simians.
+                     Traditionally, all animals in the group now known as simians are counted as monkeys except the apes, a grouping known as paraphyletic; however in the broader sense based on cladistics, apes (Hominoidea) are also included, making the terms monkeys and simians synonyms in regard of their scope.
+                      Monkeys are divided into the families of New World monkeys (Platyrrhini) and Old World monkeys (Cercopithecidae in the strict sense; Catarrhini in the broad sense, which again includes apes).` }
+                ]
+            },
         ]
     },
     isActive: [1],
@@ -155,7 +170,7 @@ const filesReducer = (state = initialState, action) => {
                 fileHidden: action.fileHidden,
             }
         }
-        case CREATE_MENU_HIDDEN : {
+        case CREATE_MENU_HIDDEN: {
             return {
                 ...state,
                 createMenuHidden: action.hidden,
@@ -176,10 +191,10 @@ export const setFol = (lvl) => ({ type: SET_FOL, lvl })
 export const setHiddenActive = (hiddenActive) => ({ type: HIDDEN_ACTIVE, hiddenActive })
 export const checkIsItemFolder = (isItemFolder) => ({ type: IS_ITEM_FOLDER, isItemFolder })
 export const setFile = (img, width, height, header, text) => ({ type: SET_FILE, img, width, height, header, text })
-export const isFolderDelete = (folderDelete) => ({type: FOLDER_DELETE, folderDelete})
-export const FileChange = (isFileChange) => ({type: IS_FILE_CHANGE, isFileChange})
-export const onFileChanged = (fileChanged) => ({type: FILE_CHANGED, fileChanged})
-export const onFileHidden = (fileHidden) => ({type: FILE_HIDDEN, fileHidden})
-export const onCreateMenuHidden = (hidden) => ({type: CREATE_MENU_HIDDEN, hidden})
+export const isFolderDelete = (folderDelete) => ({ type: FOLDER_DELETE, folderDelete })
+export const FileChange = (isFileChange) => ({ type: IS_FILE_CHANGE, isFileChange })
+export const onFileChanged = (fileChanged) => ({ type: FILE_CHANGED, fileChanged })
+export const onFileHidden = (fileHidden) => ({ type: FILE_HIDDEN, fileHidden })
+export const onCreateMenuHidden = (hidden) => ({ type: CREATE_MENU_HIDDEN, hidden })
 
 export default filesReducer;

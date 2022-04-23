@@ -6,7 +6,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
     folderPushFalse, id, setId, newFolderName, isFolder, lvl, path, setFol,
     hiddenActive, setHiddenActive, checkIsItemFolder, setFile, folderDelete,
     isFolderDelete, isFileChange, img, width, height, header, text, fileChanged,
-     onFileChanged, onFileHidden, createMenuHidden }) => {
+    onFileChanged, onFileHidden, createMenuHidden }) => {
 
 
     const a = folders.items.find(item => item.id === hiddenActive)
@@ -26,7 +26,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
             //create file
             folders.items.push({
                 id, name: newFolderName, isFolder, hidden: true, items: [
-                    { img: null, width: null, height: null, header: null, text: null }
+                    { img: null, width: null, height: null, header: 'newFile', text: null }
                 ]
             })
             setId()
@@ -55,13 +55,15 @@ const Main = ({ folders, isActive, setFolder, folderPush,
             folders.items[0].text = text;
             onFileChanged(false)
         }
+        folders.name = newName
     })
 
-
-
-
-
     const [aimg, setImg] = useState(true);
+    const [editMode, setEditMode] = useState(true);
+    const [newName, setNewName ] = useState(folders.name)
+
+    
+
     const onDoubleImgClick = () => {
         folders.hidden = !folders.hidden
         setImg(!aimg)
@@ -85,15 +87,26 @@ const Main = ({ folders, isActive, setFolder, folderPush,
 
 
     { !isActive.includes(folders.id) && aimg === false && isHiddenOnly() }
+    const b = folders.items.filter(fol => fol.id !== undefined)
+
+
 
     return (
-        <div className={createMenuHidden? s.main : s.mainDisabled }  >
-            <div onClick={onImgClick} onDoubleClick={onDoubleImgClick} className={hiddenActive === folders.id ? s.isactive : s.none}>
-                <Folder name={folders.name} img={aimg} isFolder={folders.isFolder} />
-            </div >
+        <div className={createMenuHidden ? s.main : s.mainDisabled}  >
+            <div onClick={onImgClick} onDoubleClick={onDoubleImgClick} >
+                <Folder img={aimg} isFolder={folders.isFolder} />
+            </div>
+            {editMode ? <div className={hiddenActive === folders.id ? s.isactive : s.none}>
+                    <span onDoubleClick={() => setEditMode(false)}>{folders.name}</span>
+                </div>
+                :
+                <div>
+                    <input value={newName} onChange={(e) => setNewName(e.target.value)} style={{border: '2px solid black'}}
+                     onBlur={() => setEditMode(true)} autoFocus={true}/>
+                </div>}
             <div className={s.item} hidden={folders.hidden}>
-                {folders.items.map((folder) => (<div key={folder.id}>
-                    {folder.id && <Main folders={folder} isActive={isActive} setFolder={setFolder}
+                {b.map((folder) => (<div key={folder.id}>
+                    <Main folders={folder} isActive={isActive} setFolder={setFolder}
                         folderPush={folderPush} folderPushFalse={folderPushFalse} id={id} setId={setId}
                         newFolderName={newFolderName} isFolder={isFolder} lvl={lvl + 1} path={path}
                         setFol={setFol} hiddenActive={hiddenActive} setHiddenActive={setHiddenActive}
@@ -102,7 +115,7 @@ const Main = ({ folders, isActive, setFolder, folderPush,
                         isFileChange={isFileChange} img={img} width={width} height={height}
                         header={header} text={text} fileChanged={fileChanged}
                         onFileChanged={onFileChanged} onFileHidden={onFileHidden}
-                        createMenuHidden={createMenuHidden} />}
+                        createMenuHidden={createMenuHidden} />
                 </div>
                 ))}
             </div>
