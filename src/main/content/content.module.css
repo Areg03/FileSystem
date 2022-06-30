@@ -1,0 +1,54 @@
+.fileContent,
+.fileContentDisabled {
+  border: 6px solid black;
+  border-radius: 10px;
+  z-index: 1;
+  word-break: break-all;
+  grid-area: f;
+  text-align: center;
+  height: 53.2rem;
+}
+
+.fileContent p {
+  font-size: 20px;
+  font-family: cursive;
+  text-align: left;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-top: 10px;
+  
+}
+
+.fileContentDisabled p {
+  font-size: 20px;
+  font-family: cursive;
+  text-align: left;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-top: 10px;
+}
+
+.fileContentDisabled {
+  pointer-events: none;
+}
+
+.changeName {
+  font-size: 17px;
+  position: relative;
+  color: red;
+  text-align: left;
+  width: 83px;
+}
+
+.changeName:hover {
+  text-decoration: underline;
+  color: red;
+  cursor: pointer;
+}
+
+.quit {
+  position: absolute;
+  left: 47%;
+  bottom: 3%;
+}
+

@@ -1,0 +1,54 @@
+.inp {
+
+    margin-left: 50%;
+    width: 120px;
+    top: 20px;
+    height: 40px;
+
+}
+
+.inp input {
+    border: 3px solid blue;
+    border-radius: 5px;
+    width: 140px;
+    height: 30px;
+    left: 20px;
+    top: 10px;
+    position: relative;
+    left: 10px;
+    font-size: 15px;
+    
+}
+
+.create {
+    width: 200px;
+    height: 100px;
+    border: 4px solid rgb(23, 23, 157);
+    margin-left: 100%;
+    border-radius: 19px;
+}
+
+.buttons {
+    position: relative;
+    bottom: -20px;
+
+}
+
+.x {
+    position: relative;
+    left: 11%;
+}
+
+.x:hover {
+    cursor: pointer;
+}
+
+.folder {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.file {
+    display: inline-block;
+    padding-left: 30px;
+}
